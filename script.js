@@ -1,4 +1,7 @@
 document.getElementById("countButton").onclick = function () {
+    document.getElementById("wordsDiv").innerHTML = ''
+    document.getElementById("lettersDiv").innerHTML = ''
+
     let typedText = document.getElementById("textInput").value;
     
     typedText = typedText.toLowerCase();
@@ -17,18 +20,19 @@ for (let i = 0; i < typedText.length; i += 1) {
         letterCounts[currentLetter]++;
     }
 }
+const wordCounts = {}
 const words = typedText.split(" ");
 for (let i = 0; i < words.length; i+=1){
     currentWord = words[i];
-    if(words[currentWord] === undefined){
-        words[currentWord] = 1;
+    if(wordCounts[currentWord] === undefined){
+        wordCounts[currentWord] = 1;
     } else{
-        words[currentWord]++
+        wordCounts[currentWord]++
     }
 }
-for (let word in words){
+for (let word in wordCounts){
     const span = document.createElement("span");
-    const textContent = document.createTextNode('"' + word + "\": " + words[word] + ", ");
+    const textContent = document.createTextNode('"' + word + "\": " + wordCounts[word] + ", ");
     span.appendChild(textContent);
     document.getElementById("wordsDiv").appendChild(span);
 }
@@ -38,4 +42,5 @@ for (let letter in letterCounts) {
     span.appendChild(textContent);
     document.getElementById("lettersDiv").appendChild(span);
 }
+console.log(wordCounts)
 }
