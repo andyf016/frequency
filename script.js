@@ -24,10 +24,11 @@ const wordCounts = {}
 const words = typedText.split(" ");
 for (let i = 0; i < words.length; i+=1){
     currentWord = words[i];
-    if(wordCounts[currentWord] === undefined){
+    if(wordCounts[currentWord] === undefined && currentWord != ""){
         wordCounts[currentWord] = 1;
-    } else{
-        wordCounts[currentWord]++
+    }  
+    else if(currentWord != ""){
+        wordCounts[currentWord]++ 
     }
 }
 for (let word in wordCounts){
